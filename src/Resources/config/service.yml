@@ -1,0 +1,9 @@
+services:
+    App\Controller\MathEndpoint:
+        arguments:
+            - '@App\Service\EqualsCalculator'
+            - '@App\Service\EqualsSourceValidator'
+
+    App\Service\EqualsCalculator: ~
+
+    App\Service\EqualsSourceValidator: ~
