@@ -34,7 +34,7 @@ class MathEndpoint extends AbstractController
     }
 
     /**
-     * @Route("/equals", name="calculate_equals")
+     * @Route("/equals", name="calculate_equals", methods={"POST"})
      * @param Request $request
      *
      * @return JsonResponse
