@@ -50,4 +50,19 @@ class EqualsCalculatorTest extends TestCase
         $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
         $this->assertEquals([1, 4], $result);
     }
+
+    public function testGetEqualsKeysRelativelySumWithNegativeValues()
+    {
+        $equalsCalculator = new EqualsCalculator();
+
+        $source    = [0, -1, 5, 3, 1];
+        $neededSum = 0;
+        $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
+        $this->assertEquals([1, 4], $result);
+
+        $source    = [6, -1, 6, 3, 1];
+        $neededSum = 5;
+        $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
+        $this->assertEquals([0, 1], $result);
+    }
 }
