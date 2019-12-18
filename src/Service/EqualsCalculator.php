@@ -14,25 +14,17 @@ class EqualsCalculator
      */
     public function getEqualsKeysRelativelySum(array $source, int $neededSum): array
     {
-        $length = count($source);
-
         foreach ($source as $currentKey => $currentValue) {
-            $result = [$currentKey];
-            $equal  = array_search(
+            $equal = array_search(
                 $neededSum - $currentValue,
-                array_slice($source, $currentKey + 1, $length, true)
+                array_slice($source, $currentKey + 1, count($source), true)
             );
 
             if (is_int($equal)) {
-                $result[] = $equal;
-                break;
+                return [$currentKey, $equal];
             }
         }
 
-        if (count($result) < 2) {
-            return [];
-        }
-
-        return array_values($result);
+        return [];
     }
 }
