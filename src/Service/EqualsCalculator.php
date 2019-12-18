@@ -17,17 +17,14 @@ class EqualsCalculator
         $length = count($source);
 
         foreach ($source as $currentKey => $currentValue) {
-
-
             $result = [$currentKey];
-            $result += array_flip(array_filter(
-                array_slice($source, $currentKey + 1, $length, true),
-                function ($value) use ($currentValue, $neededSum) {
-                    return ($currentValue + $value) == $neededSum;
-                }
-            ));
+            $equal  = array_search(
+                $neededSum - $currentValue,
+                array_slice($source, $currentKey + 1, $length, true)
+            );
 
-            if (count($result) == 2) { // also can use while() construction instead foreach() to avoid this if()
+            if (is_int($equal)) {
+                $result[] = $equal;
                 break;
             }
         }

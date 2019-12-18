@@ -13,7 +13,7 @@ class EqualsCalculatorTest extends TestCase
     {
         $equalsCalculator = new EqualsCalculator();
 
-        $source    = [3, 4, 2, 8];
+        $source    = [3, 4, 2, 8, 2];
         $neededSum = 12;
         $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
         $this->assertEquals([1, 3], $result);
@@ -34,5 +34,20 @@ class EqualsCalculatorTest extends TestCase
         $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
         $this->assertEquals([], $result);
 
+    }
+
+    public function testGetEqualsKeysRelativelySumWithZeroValues()
+    {
+        $equalsCalculator = new EqualsCalculator();
+
+        $source    = [0, 1, 5, 3, 1];
+        $neededSum = 1;
+        $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
+        $this->assertEquals([0, 1], $result);
+
+        $source    = [1, 0, 20, 3, 0, 1];
+        $neededSum = 0;
+        $result    = $equalsCalculator->getEqualsKeysRelativelySum($source, $neededSum);
+        $this->assertEquals([1, 4], $result);
     }
 }
